@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "webapp",
+            "type": "python",
+            "request": "launch",
+            "module": "searchapp",
+            "console": "internalConsole"
+        },
+        {
+            "name": "create db",
+            "type": "python",
+            "request": "launch",
+            "module": "searchapp.tools.db",
+            "args": ["create"],
+            "console": "internalConsole",
+        },
+        {
+            "name": "initiate db",
+            "type": "python",
+            "request": "launch",
+            "module": "searchapp.tools.db",
+            "args": ["fill"],
+            "console": "internalConsole"
+        },
+        {
+            "name": "db",
+            "type": "python",
+            "request": "launch",
+            "module": "searchapp.tools.db",
+            "console": "internalConsole",
+        },
+    ]
+}
