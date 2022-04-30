@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "aps_text_doc_search"
+version = "0.1.0"
+description = ""
+authors = ["Alexander Lyotov <sippie84@gmail.com>"]
+
+[tool.poetry.dependencies]
+psycopg2-binary = "^2.9.1"
+python = "^3.9"
+Flask = "^2.0.1"
+marshmallow = "^3.13.0"
+flasgger = "^0.9.5"
+Flask-Testing = "^0.8.1"
+sqlalchemy-stubs = "^0.4"
+typer = "^0.4.0"
+Flask-SQLAlchemy = "^2.5.1"
+sentry-sdk = {extras = ["flask"], version = "^1.4.3"}
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.910"
+flake8 = "^3.9.2"
+wemake-python-styleguide = "^0.15.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
