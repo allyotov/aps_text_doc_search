@@ -3,7 +3,7 @@ import os
 
 from flask import Flask
 
-# from searchapp.resources.models import db
+from searchapp.resources.models import db
 # from searchapp.resources.routes.routes import routes
 
 def create_app():
