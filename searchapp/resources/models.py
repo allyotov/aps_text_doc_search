@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-class Books(db.Model):  # type: ignore
+class Posts(db.Model):  # type: ignore
     uid = db.Column(db.Integer, primary_key=True)
     id = db.Column(db.Integer, nullable=False)
     rubrics = db.Column(db.String, nullable=False)
