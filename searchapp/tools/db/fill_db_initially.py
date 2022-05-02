@@ -1,5 +1,6 @@
 import csv
 import logging
+from datetime import datetime
 
 from searchapp import create_app
 from searchapp.resources.models import Post, Posts, db
@@ -12,7 +13,8 @@ def read_posts_from_csv(csv_path='posts.csv'):
     with open(csv_path, mode='r') as input_file:
         reader = csv.reader(input_file)
         next(reader)
-        for text, created_date, rubrics in reader:
+        for text, created_date_str, rubrics in reader: 
+            created_date = datetime.strptime(created_date_str, '%Y-%m-%d %H:%M:%S')
             post = Post(
                 rubrics=rubrics,
                 text=text,
