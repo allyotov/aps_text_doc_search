@@ -9,7 +9,7 @@ db = SQLAlchemy()
 class Posts(db.Model):  # type: ignore
     id = db.Column(db.Integer, primary_key=True)
     rubrics = db.Column(db.String, nullable=False)
-    text = db.Column(db.String, nullable=False)
+    text = db.Column(db.String, nullable=False, index=True)
     created_date = db.Column(db.DateTime, nullable=False)
 
 
