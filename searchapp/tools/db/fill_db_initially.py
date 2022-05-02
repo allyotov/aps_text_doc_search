@@ -12,9 +12,8 @@ def read_posts_from_csv(csv_path='posts.csv'):
     with open(csv_path, mode='r') as input_file:
         reader = csv.reader(input_file)
         next(reader)
-        for post_id, rubrics, text, created_date in reader:
+        for text, created_date, rubrics in reader:
             post = Post(
-                id=post_id,
                 rubrics=rubrics,
                 text=text,
                 created_date=created_date
