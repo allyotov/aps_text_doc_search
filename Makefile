@@ -20,3 +20,9 @@ dev.db.fill:
 
 dev.db.down:
 	docker-compose -f docker-compose.dev.yml down
+
+dev.db.down.volumes:
+	docker-compose -f docker-compose.dev.yml down -t1 --volumes
+
+dev.app.run:
+	python -m searchapp
