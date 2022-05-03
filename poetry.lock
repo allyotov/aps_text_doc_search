@@ -320,6 +320,17 @@ Flask = ">=0.10"
 SQLAlchemy = ">=0.8.0"
 
 [[package]]
+name = "flask-swagger-ui"
+version = "3.36.0"
+description = "Swagger UI blueprint for Flask"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flask = "*"
+
+[[package]]
 name = "flask-testing"
 version = "0.8.1"
 description = "Unit testing for Flask"
@@ -613,7 +624,7 @@ docutils = ">=0.11,<1.0"
 
 [[package]]
 name = "sentry-sdk"
-version = "1.5.10"
+version = "1.5.11"
 description = "Python client for Sentry (https://sentry.io)"
 category = "main"
 optional = false
@@ -836,7 +847,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "591f5f5d0a2c4c08374ebcae3c457b34bfee13ece41d85e6c29959bbf2784681"
+content-hash = "3a2ac4e34cb02bd1d7c3cc9c3e9b00d29c9be8dc048dc489f2782a8a3a321687"
 
 [metadata.files]
 astor = [
@@ -943,6 +954,9 @@ flask = [
 flask-sqlalchemy = [
     {file = "Flask-SQLAlchemy-2.5.1.tar.gz", hash = "sha256:2bda44b43e7cacb15d4e05ff3cc1f8bc97936cc464623424102bfc2c35e95912"},
     {file = "Flask_SQLAlchemy-2.5.1-py2.py3-none-any.whl", hash = "sha256:f12c3d4cc5cc7fdcc148b9527ea05671718c3ea45d50c7e732cceb33f574b390"},
+]
+flask-swagger-ui = [
+    {file = "flask-swagger-ui-3.36.0.tar.gz", hash = "sha256:f329752a65b2940ada8eeb57bce613f7c0a12856a9c31063bb9e33798554c9ed"},
 ]
 flask-testing = [
     {file = "Flask-Testing-0.8.1.tar.gz", hash = "sha256:0a734d7b68e63a9410b413cd7b1f96456f9a858bd09a6222d465650cc782eb01"},
@@ -1262,8 +1276,8 @@ restructuredtext-lint = [
     {file = "restructuredtext_lint-1.4.0.tar.gz", hash = "sha256:1b235c0c922341ab6c530390892eb9e92f90b9b75046063e047cacfb0f050c45"},
 ]
 sentry-sdk = [
-    {file = "sentry-sdk-1.5.10.tar.gz", hash = "sha256:0a9eb20a84f4c17c08c57488d59fdad18669db71ebecb28fb0721423a33535f9"},
-    {file = "sentry_sdk-1.5.10-py2.py3-none-any.whl", hash = "sha256:972c8fe9318a415b5cf35f687f568321472ef94b36806407c370ce9c88a67f2e"},
+    {file = "sentry-sdk-1.5.11.tar.gz", hash = "sha256:6c01d9d0b65935fd275adc120194737d1df317dce811e642cbf0394d0d37a007"},
+    {file = "sentry_sdk-1.5.11-py2.py3-none-any.whl", hash = "sha256:c17179183cac614e900cbd048dab03f49a48e2820182ec686c25e7ce46f8548f"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
