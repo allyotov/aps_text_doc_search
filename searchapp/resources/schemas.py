@@ -1,6 +1,4 @@
-from marshmallow import Schema, fields, post_load
-
-from searchapp.resources.models import Post
+from marshmallow import Schema, fields
 
 
 class PostSchema(Schema):
