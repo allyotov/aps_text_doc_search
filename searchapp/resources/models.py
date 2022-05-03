@@ -36,6 +36,7 @@ class Posts(db.Model):  # type: ignore
 
 @dataclass
 class Post:
+    id: int
     rubrics: str
     text: str
     created_date: datetime

@@ -13,9 +13,10 @@ def read_posts_from_csv(csv_path='posts.csv'):
     with open(csv_path, mode='r') as input_file:
         reader = csv.reader(input_file)
         next(reader)
-        for text, created_date_str, rubrics in reader: 
+        for i, (text, created_date_str, rubrics) in enumerate(reader, start=1): 
             created_date = datetime.strptime(created_date_str, '%Y-%m-%d %H:%M:%S')
             post = Post(
+                id=i,
                 rubrics=rubrics,
                 text=text,
                 created_date=created_date
@@ -29,6 +30,7 @@ def fill(posts_list):
     for post_num, post in enumerate(posts_list, start=1):
         try:
             post_raw = Posts(
+                id=post.id,
                 rubrics=post.rubrics,
                 text=post.text,
                 created_date=post.created_date
