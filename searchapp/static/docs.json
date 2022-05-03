@@ -1,0 +1,86 @@
+{
+  "definitions": {
+    "Post": {
+      "properties": {
+        "id": {
+          "type": "int"
+        },
+        "rubrics": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "created_date": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "rubrics",
+        "text",
+        "created_date"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "SearchPostApp",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/text_doc/{post_id}/": {
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "given post has been removed from given student",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        },
+        "summary": "This is endpoint for removing post",
+        "tags": [
+          "edit posts"
+        ]
+      }
+    },
+    "/api/v1/text_doc/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "search",
+            "in": "path",
+            "required": false,
+            "description": "text that must be included in post",
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "in": "path",
+            "required": false,
+            "description": "sort by creation date order",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post data",
+            "content":{
+              "application/json":{
+                "schema": {
+                    "$ref": "#/definitions/Post"
+                  }
+                }
+            }
+          }
+        },
+        "summary": "This is an endpoint for obtaining the posts list",
+        "tags": [
+          "posts"
+        ]
+      } 
+    }
+  },
+  "openapi": "3.0.0"
+}
