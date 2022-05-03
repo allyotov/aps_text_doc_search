@@ -29,7 +29,6 @@ def fill(posts_list):
     for post_num, post in enumerate(posts_list, start=1):
         try:
             post_raw = Posts(
-                id=post.id,
                 rubrics=post.rubrics,
                 text=post.text,
                 created_date=post.created_date
@@ -38,8 +37,8 @@ def fill(posts_list):
             db.session.commit()
             logger.info(f'Post added: {post_num} of {total_posts}')
         except Exception as exc:
-            logger.exception("The post with id %s wasn't added into db. The reason is: \n%s" % (
-                post.id,
+            logger.exception("The post with text '%s' wasn't added into db. The reason is: \n%s" % (
+                post.text[:10],
                 exc,
             ))
             db.session.rollback()
