@@ -14,3 +14,9 @@ dev.db.up:
 
 dev.db.create:
 	python -m searchapp.tools.db create
+
+dev.db.fill:
+	python -m searchapp.tools.db fill
+
+dev.db.down:
+	docker-compose -f docker-compose.dev.yml down

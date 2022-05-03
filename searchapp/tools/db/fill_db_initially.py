@@ -1,5 +1,6 @@
 import csv
 import logging
+from datetime import datetime
 
 from searchapp import create_app
 from searchapp.resources.models import Post, Posts, db
@@ -12,9 +13,9 @@ def read_posts_from_csv(csv_path='posts.csv'):
     with open(csv_path, mode='r') as input_file:
         reader = csv.reader(input_file)
         next(reader)
-        for post_id, rubrics, text, created_date in reader:
+        for text, created_date_str, rubrics in reader: 
+            created_date = datetime.strptime(created_date_str, '%Y-%m-%d %H:%M:%S')
             post = Post(
-                id=post_id,
                 rubrics=rubrics,
                 text=text,
                 created_date=created_date
@@ -28,7 +29,6 @@ def fill(posts_list):
     for post_num, post in enumerate(posts_list, start=1):
         try:
             post_raw = Posts(
-                id=post.id,
                 rubrics=post.rubrics,
                 text=post.text,
                 created_date=post.created_date
@@ -37,8 +37,8 @@ def fill(posts_list):
             db.session.commit()
             logger.info(f'Post added: {post_num} of {total_posts}')
         except Exception as exc:
-            logger.exception("The post with id %s wasn't added into db. The reason is: \n%s" % (
-                post.id,
+            logger.exception("The post with text '%s' wasn't added into db. The reason is: \n%s" % (
+                post.text[:10],
                 exc,
             ))
             db.session.rollback()
