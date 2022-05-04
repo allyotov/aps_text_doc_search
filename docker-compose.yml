@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  db:
+  post_db:
     image: postgres:14.0
     networks:
       - aps_posts
@@ -8,11 +8,13 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
 
-  backend:
-    image: allyotov/aps_posts:1.0.0
+  post_backend:
+    image: allyotov/aps_posts:latest
     networks:
       - aps_posts
     env_file: .env
+    ports:
+      - 5000:5000
     volumes:
       - ./backend_data:/data
 
