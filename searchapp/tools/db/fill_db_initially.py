@@ -7,6 +7,9 @@ from searchapp.resources.models import Post, Posts, db
 
 logger = logging.getLogger(__name__)
 
+def deserialize_rubrics(rubrics_string):
+    splited_string = rubrics_string.split('\'')
+    return splited_string[1], splited_string[3], splited_string[5]
 
 def read_posts_from_csv(csv_path='posts.csv'):
     posts_list = []
@@ -17,7 +20,7 @@ def read_posts_from_csv(csv_path='posts.csv'):
             created_date = datetime.strptime(created_date_str, '%Y-%m-%d %H:%M:%S')
             post = Post(
                 id=i,
-                rubrics=rubrics,
+                rubrics=deserialize_rubrics(rubrics),
                 text=text,
                 created_date=created_date
             )
