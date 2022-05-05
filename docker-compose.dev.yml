@@ -8,5 +8,17 @@ services:
     ports:
       - 5432:5432
 
+  elasticsearch:
+    image: elasticsearch:8.2.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    volumes:
+      - ./dev_es_data:/usr/share/elasticsearch/data
+    networks:
+      - searchapp
+    ports:
+      - 9200:9200
+
 networks:
   searchapp:
