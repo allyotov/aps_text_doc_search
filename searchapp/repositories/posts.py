@@ -1,5 +1,5 @@
-from searchapp.resources.models import Post, Posts, db
-from searchapp.tools.db.sql import field_contains, sqlfilter, sqlorder
+from searchapp.resources.models import Post, Posts, db, es
+from searchapp.tools.db.sql import sqlorder
 
 
 class PostsRepo:
@@ -19,9 +19,15 @@ class PostsRepo:
         ]
 
     def find_any_inclusions(self, order_desc=False, search_str: str = None):
-        query = Posts.query
-        text_query = field_contains(query, Posts.text, search_str)
-        result_query = sqlorder(text_query, Posts.created_date, order_desc).slice(1, 20)
+        q = {"query": {"match_phrase": {"text": search_str}}, "size": 20}
+
+        ids = [int(post['_id']) for post in es.search(index='post-index', body=q)['hits']['hits']]
+
+        result_query = sqlorder(
+            Posts.query, 
+            Posts.created_date, 
+            order_desc
+        ).filter(Posts.id.in_(ids)).all()
 
         return [
             Post(
@@ -37,6 +43,7 @@ class PostsRepo:
         post_to_delete = Posts.query.filter(Posts.id == post_id).first()
         db.session.delete(post_to_delete)
         db.session.commit()
+        es.delete(index='post-index', id=post_id)
 
     def check_by_id(self, post_id) -> bool:
         return Posts.query.filter(Posts.id == post_id).count() > 0
