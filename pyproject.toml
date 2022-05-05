@@ -16,6 +16,7 @@ typer = "^0.4.0"
 Flask-SQLAlchemy = "^2.5.1"
 sentry-sdk = {extras = ["flask"], version = "^1.4.3"}
 flask-swagger-ui = "^3.36.0"
+elasticsearch = "^8.2.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
