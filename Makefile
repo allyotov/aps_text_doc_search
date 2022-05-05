@@ -47,3 +47,9 @@ dev.db.down.volumes:
 
 dev.app.run:
 	python -m searchapp
+
+dev.es.logs:
+	docker-compose -f docker-compose.dev.yml logs elasticsearch
+
+remove.images:
+	docker rmi -f $(docker images -aq)
