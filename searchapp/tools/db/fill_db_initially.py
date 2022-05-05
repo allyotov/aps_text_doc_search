@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 
 from searchapp import create_app
-from searchapp.resources.models import Post, Posts, db
+from searchapp.resources.models import Post, Posts, db, es
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +41,10 @@ def fill(posts_list):
             db.session.add(post_raw)
             db.session.commit()
             logger.info(f'Post added: {post_num} of {total_posts}')
+            doc = {'text': post.text}
+            es.index(index="post-index", id=post_num, document=doc)
+            logger.info(f'Index added: {post_num} of {total_posts}')
+
         except Exception as exc:
             logger.exception("The post with text '%s' wasn't added into db. The reason is: \n%s" % (
                 post.text[:10],
