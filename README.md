@@ -30,7 +30,7 @@ make install
 ```
 После этого нужно немного подождать, чтобы успел подняться контейнер в Elasticsearch. Для проверки Elasticsearch можно запустить ping и посмтреть health
 ```bash
-make check_es
+make es.check
 ```
 
 ```bash
@@ -54,15 +54,15 @@ make app.run
 ```bash
 app.logs
 ```
-Остановить контейнеры
+Остановить контейнеры:
 ```bash
 make down
 ```
-Удалить контейнеры
+Удалить контейнеры:
 ```bash
 make remove.images
 ```
-Удалить директорию с данными Б.Д. и индекса
+Удалить директорию с данными Б.Д. и индекса:
 ```bash
 make clean
 ```

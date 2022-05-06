@@ -9,7 +9,7 @@ lint:
 install:
 	docker-compose up -d
 
-check_es:
+es.check:
 	docker-compose exec post_backend python -m searchapp.tools.db elastic
 
 es.logs:
