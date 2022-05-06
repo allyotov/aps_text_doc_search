@@ -1,12 +1,15 @@
+import os
+
 from dataclasses import dataclass
 from datetime import datetime
 from typing import List
+
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
 from elasticsearch import Elasticsearch
 
-es = Elasticsearch('http://localhost:9200')
+es = Elasticsearch(os.environ['ELASTIC_URL'])
 db = SQLAlchemy()
 
 class Posts(db.Model):  # type: ignore
