@@ -140,3 +140,5 @@ dmypy.json
 ..env.swp
 
 /dev_es_data
+/es_data
+/.data
