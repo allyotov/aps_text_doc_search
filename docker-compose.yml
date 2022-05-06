@@ -6,7 +6,19 @@ services:
       - aps_posts
     env_file: .env
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - ./.data/postgres_data:/var/lib/postgresql/data
+
+  elasticsearch:
+    image: elasticsearch:8.2.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    env_file:
+      - .env
+    volumes:
+      - ./.data/es_data:/usr/share/elasticsearch/data
+    networks:
+      - aps_posts
 
   post_backend:
     image: allyotov/aps_posts:latest

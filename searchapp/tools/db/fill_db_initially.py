@@ -3,10 +3,13 @@ import logging
 from datetime import datetime
 
 from searchapp import create_app
-from searchapp.resources.models import Post, Posts, db
+from searchapp.resources.models import Post, Posts, db, es
 
 logger = logging.getLogger(__name__)
 
+def deserialize_rubrics(rubrics_string):
+    splited_string = rubrics_string.split('\'')
+    return splited_string[1], splited_string[3], splited_string[5]
 
 def read_posts_from_csv(csv_path='posts.csv'):
     posts_list = []
@@ -17,7 +20,7 @@ def read_posts_from_csv(csv_path='posts.csv'):
             created_date = datetime.strptime(created_date_str, '%Y-%m-%d %H:%M:%S')
             post = Post(
                 id=i,
-                rubrics=rubrics,
+                rubrics=deserialize_rubrics(rubrics),
                 text=text,
                 created_date=created_date
             )
@@ -38,6 +41,10 @@ def fill(posts_list):
             db.session.add(post_raw)
             db.session.commit()
             logger.info(f'Post added: {post_num} of {total_posts}')
+            doc = {'text': post.text}
+            es.index(index="post-index", id=post_num, document=doc)
+            logger.info(f'Index added: {post_num} of {total_posts}')
+
         except Exception as exc:
             logger.exception("The post with text '%s' wasn't added into db. The reason is: \n%s" % (
                 post.text[:10],

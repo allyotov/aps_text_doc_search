@@ -137,3 +137,8 @@ dmypy.json
 /.idea
 
 .swp
+..env.swp
+
+/dev_es_data
+/es_data
+/.data

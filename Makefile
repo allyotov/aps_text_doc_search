@@ -9,6 +9,12 @@ lint:
 install:
 	docker-compose up -d
 
+check_es:
+	docker-compose exec post_backend python -m searchapp.tools.db elastic
+
+es.logs:
+	docker-compose logs elasticsearch
+
 db.create:
 	docker-compose exec post_backend python -m searchapp.tools.db create
 
@@ -25,7 +31,7 @@ down:
 	docker-compose down
 
 down.volumes:
-	docker-compose down -t1 --volumes
+	docker-compose down --remove-orphans --volumes --rmi all
 
 dev.db.upd:
 	docker-compose -f docker-compose.dev.yml up -d
@@ -47,3 +53,18 @@ dev.db.down.volumes:
 
 dev.app.run:
 	python -m searchapp
+
+dev.check_es:
+	python -m searchapp.tools.db elastic
+
+dev.es.logs:
+	docker-compose -f docker-compose.dev.yml logs elasticsearch
+
+remove.images:
+	docker rmi -f $(docker images -aq)
+
+clean:
+	sudo rm -r -f ./.data/
+	mkdir -p .data/es_data
+	mkdir -p .data/dev_es_data
+	mkdir -p .data/postgres_data
